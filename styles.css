@@ -1,0 +1,289 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #d4f4dd 0%, #a8e6c1 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(0, 100, 0, 0.15);
+}
+
+h1 {
+    text-align: center;
+    color: #2d5016;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #558b2f;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
+
+.game-area {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.section h2 {
+    color: #2d5016;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+
+/* Cards Container */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.card {
+    width: 120px;
+    padding: 15px;
+    border: 3px solid #558b2f;
+    border-radius: 15px;
+    background: #f1f8f4;
+    cursor: grab;
+    text-align: center;
+    transition: all 0.3s ease;
+    user-select: none;
+    active: grab;
+}
+
+.card:hover {
+    background: #e8f5e9;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(85, 139, 47, 0.3);
+}
+
+.card:active {
+    cursor: grabbing;
+}
+
+.card-image {
+    font-size: 3em;
+    margin-bottom: 8px;
+}
+
+.card-label {
+    font-weight: bold;
+    color: #2d5016;
+    font-size: 0.95em;
+}
+
+.card.dragging {
+    opacity: 0.7;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Drop Zone */
+.drop-zone {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    background: #f9fff8;
+    border: 3px dashed #a8e6c1;
+    border-radius: 15px;
+    min-height: 200px;
+}
+
+.slot {
+    aspect-ratio: 1;
+    border: 2px dashed #c5e1a5;
+    border-radius: 10px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #aed581;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.slot:hover {
+    background: #f1f8f4;
+    border-color: #a8e6c1;
+}
+
+.slot.drag-over {
+    background: #e8f5e9;
+    border-color: #558b2f;
+    box-shadow: inset 0 0 10px rgba(85, 139, 47, 0.2);
+}
+
+.slot.filled {
+    border-style: solid;
+    border-color: #558b2f;
+    background: white;
+}
+
+.slot-content {
+    text-align: center;
+    pointer-events: none;
+}
+
+.slot-image {
+    font-size: 2.5em;
+    margin-bottom: 5px;
+}
+
+.slot-label {
+    font-size: 0.75em;
+    color: #2d5016;
+    word-wrap: break-word;
+}
+
+/* Buttons */
+.button-group {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 12px 30px;
+    font-size: 1em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-check {
+    background: #4caf50;
+    color: white;
+}
+
+.btn-check:hover {
+    background: #45a049;
+    transform: scale(1.05);
+}
+
+.btn-check:active {
+    transform: scale(0.98);
+}
+
+.btn-reset {
+    background: #558b2f;
+    color: white;
+}
+
+.btn-reset:hover {
+    background: #3f6428;
+    transform: scale(1.05);
+}
+
+.btn-reset:active {
+    transform: scale(0.98);
+}
+
+/* Feedback */
+.feedback {
+    text-align: center;
+    min-height: 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.feedback.success {
+    background: #c8e6c9;
+    color: #1b5e20;
+    border: 2px solid #4caf50;
+}
+
+.feedback.error {
+    background: #ffcdd2;
+    color: #b71c1c;
+    border: 2px solid #f44336;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .cards-container {
+        gap: 10px;
+    }
+
+    .card {
+        width: 100px;
+        padding: 10px;
+    }
+
+    .card-image {
+        font-size: 2.5em;
+    }
+
+    .drop-zone {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.4em;
+    }
+
+    .cards-container {
+        gap: 8px;
+    }
+
+    .card {
+        width: 80px;
+        padding: 8px;
+    }
+
+    .card-image {
+        font-size: 2em;
+    }
+
+    .card-label {
+        font-size: 0.8em;
+    }
+
+    .drop-zone {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
